@@ -1,6 +1,3 @@
-# go to home (~) path (to remove weird full path clutter)
-#cd
-
 # customize the terminal prompt message:
 # [h, n] user@computer:directory $
 # where h = command history number, and n = number of running processes
