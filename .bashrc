@@ -19,7 +19,7 @@ if [[ -n $SSH_CONNECTION ]]; then
     echo Welcome! This system as `nproc` cores.
 fi
 
-# Calling cd will first set the "bk" path, and then cd normally.
+# Calling cd will cd normally and then set the "bk" path
 function cd()
 {
     if [ $# -eq 0 ];
@@ -28,11 +28,16 @@ function cd()
     else
         path=$*;
     fi
-    bk-set && builtin cd "$path"
+    builtin cd "$path" && bk-set
 }
 
-# bk will "cd" into the previous directory the user was in. If the bkdir file
+# bk will "cd" into the previous last the user was in. If the bkdir file
 # doesn't exist, nothing will happen.
+# Useful for quickly getting back to the same directory after logout or
+# when doing ssh and wanting to get back to where you were...
+# TODO:
+#   ability to go back (e.g. bk 0 is latest, bk 1 the last, bk 2 before, etc.)
+#   setting favorites and using bk to instantly get to them
 function bk()
 {
     SCRIPTDIR=`scriptdir`
