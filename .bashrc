@@ -18,17 +18,6 @@ export LD_LIBRARY_PATH=~/lib/:/lusr/opt/gcc-4.8.2/lib64/:$LD_LIBRARY_PATH
 alias ls='ls --color=auto'
 
 
-# when loggin in with SSH, display a message with number of cores on this PC
-# as well as the number of unique users
-if [[ -n $SSH_CONNECTION ]]; then
-    numusers=`unique-users`
-    s='s'
-    if [ $numusers -eq 1 ]; then s=''; fi
-    echo
-    echo "Hello! This system as `nproc` cores and `unique-users` unique user$s."
-fi
-
-
 # Calling cd will cd normally and then set the "bk" path
 function cd()
 {
