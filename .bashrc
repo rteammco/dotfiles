@@ -17,6 +17,9 @@ export LD_LIBRARY_PATH=~/lib/:/lusr/opt/gcc-4.8.2/lib64/:$LD_LIBRARY_PATH
 # make "ls" show results in color
 alias ls='ls --color=auto'
 
+# lls clears screen and then does an 'ls'
+alias lls='clear; pwd; ls'
+
 
 # Calling cd will cd normally and then set the "bk" path
 function cd()
@@ -43,6 +46,7 @@ function bk()
     SCRIPTDIR=`scriptdir`
     if [ -e "$SCRIPTDIR/bkdir" ];
     then
-        cd `cat $SCRIPTDIR/bkdir`
+        cd `cat $SCRIPTDIR/bkdir`;
+        pwd;
     fi
 }
