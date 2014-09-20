@@ -1,0 +1,20 @@
+#!/bin/bash
+
+bash_profile=$HOME/.bash_profile
+bashrc=$HOME/.bashrc
+vimrc=$HOME/.vimrc
+
+echo "WARNING: This will delete and replace the following files:"
+echo "  $bash_profile"
+echo "  $bashrc"
+echo "  $vimrc"
+read -p "Continue? [Y/n] " ans
+if [[ $ans == [Yy]* ]];
+then
+    rm $bash_profile
+    rm $bashrc
+    rm $vimrc
+    ln -s `pwd`/.bash_profile $bash_profile;
+    ln -s `pwd`/.bashrc $bashrc;
+    ln -s `pwd`/.vimrc $vimrc;
+fi
