@@ -1,7 +1,10 @@
+# detect platform
+OS=`uname`
+
+
 # customize the terminal prompt message:
 # [h, n] user@computer:directory $
 # where h = command history number, and n = number of running processes
-#export PS1='[\!, \j] \u@\h:\w $ '
 export PS1='\u@\[\e[1m\]\h\[\e[0m\]: \W $ '
 
 
@@ -15,7 +18,14 @@ export LD_LIBRARY_PATH=~/lib/:/lusr/opt/gcc-4.8.2/lib64/:$LD_LIBRARY_PATH
 
 
 # make "ls" show results in color
-alias ls='ls --color=auto'
+# OS X:
+if [[ $OS == 'Darwin' ]]; then
+    export CLICOLOR=1;
+    export LSCOLORS=GxFxCxDxBxegedabagaced;
+# Linux:
+else
+    alias ls='ls --color=auto';
+fi
 
 
 # Calling cd will cd normally and then set the "bk" path
