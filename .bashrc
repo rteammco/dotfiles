@@ -30,6 +30,9 @@ fi
 # lls clears screen and then does an 'ls'
 alias lls='clear; pwd; ls'
 
+# vm becomes mv because I keep mistyping it
+alias vm='echo "mv NOT vm!!!"; mv'
+
 
 # Calling cd will cd normally and then set the "bk" path
 function cd()
