@@ -5,7 +5,8 @@ OS=`uname`
 # OS X
 if [[ $OS == 'Darwin' ]];
 then
-    . ~/.bashrc
+    . ~/.bashrc;
+    export PATH="/usr/local/mysql/bin:$PATH"
 
 
 # Linux
