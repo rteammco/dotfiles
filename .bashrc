@@ -25,6 +25,7 @@ if [[ $OS == 'Darwin' ]]; then
 # Linux:
 else
     alias ls='ls --color=auto';
+    export LPDEST="lw302"
 fi
 
 # lls clears screen and then does an 'ls'
@@ -33,10 +34,14 @@ alias lls='clear; pwd; ls'
 # vm becomes mv because I keep mistyping it
 alias vm='echo "mv NOT vm!!!"; mv'
 
+# g++ aliased to always use C++ 11.
+alias g++='g++ -std=c++11'
+
 
 # Calling cd will cd normally and then set the "bk" path
 function cd()
 {
+
     if [ $# -eq 0 ];
     then
         path=~;
