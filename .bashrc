@@ -1,3 +1,7 @@
+# set dotfiles directory (where setup was run)
+dotfiles_dir=$HOME/Dotfiles  # TODO: automate w/ setup script
+
+
 # detect platform
 OS=`uname`
 
@@ -14,7 +18,7 @@ export PATH=$HOME/bin:$PATH
 
 # if a local bashrc is also defined (for this machine only), source
 # that to add the required local setups.
-local_bashrc_file=$HOME/Dotfiles/.bashrc_local
+local_bashrc_file=$dotfiles_dir/.bashrc_local
 if [ -a $local_bashrc_file ]; then
   source $local_bashrc_file
 fi
@@ -40,7 +44,7 @@ fi
 # source all other bashrc files
 
 # aliased commands
-source $HOME/Dotfiles/.bashrc_alias_commands
+source $dotfiles_dir/.bashrc_alias_commands
 
 # custom function definitions
-source $HOME/Dotfiles/.bashrc_functions
+source $dotfiles_dir/.bashrc_functions
