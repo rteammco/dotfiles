@@ -12,12 +12,20 @@ export PS1='\u@\[\e[1m\]\h\[\e[0m\]: \W $ '
 export PATH=$HOME/Scripts:$PATH
 export PATH=$HOME/bin:$PATH
 
+# if a local bashrc is also defined (for this machine only), source
+# that to add the required local setups.
+local_bashrc_file=$HOME/Dotfiles/.bashrc_local
+if [ -a $local_bashrc_file ]; then
+  source $local_bashrc_file
+fi
 
 # add ~/lib to library path
+# TODO: this is a local export and shouldn't be in the repo
 export LD_LIBRARY_PATH=~/lib/:/lusr/opt/gcc-4.8.2/lib64/:$LD_LIBRARY_PATH
 
 
 # make "ls" show results in color
+# TODO: have different setup scripts for each OS and source them as needed
 # OS X:
 if [[ $OS == 'Darwin' ]]; then
     export CLICOLOR=1;
@@ -28,45 +36,11 @@ else
     export LPDEST="lw302"
 fi
 
-# lls clears screen and then does an 'ls'
-alias lls='clear; pwd; ls'
 
-# vm becomes mv because I keep mistyping it
-alias vm='echo "mv NOT vm!!!"; mv'
+# source all other bashrc files
 
-# g++ aliased to always use C++ 11.
-alias g++='g++ -std=c++11'
+# aliased commands
+source $HOME/Dotfiles/.bashrc_alias_commands
 
-# cppline will alias to 'python cpplint.py' to call the script.
-alias cpplint='python `scriptdir`/cpplint.py'
-
-
-# Calling cd will cd normally and then set the "bk" path
-function cd()
-{
-  if [ $# -eq 0 ];
-  then
-    path=~;
-  else
-    path=$*;
-  fi
-  builtin cd "$path" && bk-set
-}
-
-
-# bk will "cd" into the previous last the user was in. If the bkdir file
-# doesn't exist, nothing will happen.
-# Useful for quickly getting back to the same directory after logout or
-# when doing ssh and wanting to get back to where you were...
-# TODO:
-#   ability to go back (e.g. bk 0 is latest, bk 1 the last, bk 2 before, etc.)
-#   setting favorites and using bk to instantly get to them
-function bk()
-{
-  SCRIPTDIR=`scriptdir`
-  if [ -e "$SCRIPTDIR/bkdir" ];
-  then
-    cd `cat $SCRIPTDIR/bkdir`;
-    pwd;
-  fi
-}
+# custom function definitions
+source $HOME/Dotfiles/.bashrc_functions
