@@ -11,9 +11,9 @@ echo "  $vimrc"
 read -p "Continue? [Y/n] " ans
 if [[ $ans == [Yy]* ]];
 then
-    rm $bash_profile
-    rm $bashrc
-    rm $vimrc
+    rm -f $bash_profile
+    rm -f $bashrc
+    rm -f $vimrc
     ln -s `pwd`/.bash_profile $bash_profile;
     ln -s `pwd`/.bashrc $bashrc;
     ln -s `pwd`/.vimrc $vimrc;

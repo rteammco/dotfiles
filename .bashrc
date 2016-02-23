@@ -25,6 +25,7 @@ if [[ $OS == 'Darwin' ]]; then
 # Linux:
 else
     alias ls='ls --color=auto';
+    export LPDEST="lw302"
 fi
 
 # lls clears screen and then does an 'ls'
@@ -33,17 +34,23 @@ alias lls='clear; pwd; ls'
 # vm becomes mv because I keep mistyping it
 alias vm='echo "mv NOT vm!!!"; mv'
 
+# g++ aliased to always use C++ 11.
+alias g++='g++ -std=c++11'
+
+# cppline will alias to 'python cpplint.py' to call the script.
+alias cpplint='python `scriptdir`/cpplint.py'
+
 
 # Calling cd will cd normally and then set the "bk" path
 function cd()
 {
-    if [ $# -eq 0 ];
-    then
-        path=~;
-    else
-        path=$*;
-    fi
-    builtin cd "$path" && bk-set
+  if [ $# -eq 0 ];
+  then
+    path=~;
+  else
+    path=$*;
+  fi
+  builtin cd "$path" && bk-set
 }
 
 
@@ -56,10 +63,10 @@ function cd()
 #   setting favorites and using bk to instantly get to them
 function bk()
 {
-    SCRIPTDIR=`scriptdir`
-    if [ -e "$SCRIPTDIR/bkdir" ];
-    then
-        cd `cat $SCRIPTDIR/bkdir`;
-        pwd;
-    fi
+  SCRIPTDIR=`scriptdir`
+  if [ -e "$SCRIPTDIR/bkdir" ];
+  then
+    cd `cat $SCRIPTDIR/bkdir`;
+    pwd;
+  fi
 }
