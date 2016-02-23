@@ -1,5 +1,5 @@
 # set dotfiles directory (where setup was run)
-dotfiles_dir=$HOME/Dotfiles  # TODO: automate w/ setup script
+dotfiles_dir=$HOME/Dotfiles  # TODO: automate w/ setup script?
 
 
 # detect platform

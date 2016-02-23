@@ -11,10 +11,12 @@ echo "  $vimrc"
 read -p "Continue? [Y/n] " ans
 if [[ $ans == [Yy]* ]];
 then
-    rm -f $bash_profile
-    rm -f $bashrc
-    rm -f $vimrc
-    ln -s `pwd`/.bash_profile $bash_profile;
-    ln -s `pwd`/.bashrc $bashrc;
-    ln -s `pwd`/.vimrc $vimrc;
+  # Remove the old dotfiles:
+  rm -f $bash_profile
+  rm -f $bashrc
+  rm -f $vimrc
+  # Link these dotfiles in their place:
+  ln -s `pwd`/.bash_profile $bash_profile;
+  ln -s `pwd`/.bashrc $bashrc;
+  ln -s `pwd`/.vimrc $vimrc;
 fi
