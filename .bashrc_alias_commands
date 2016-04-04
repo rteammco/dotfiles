@@ -11,4 +11,4 @@ alias vm='echo "mv NOT vm!!!"; mv'
 alias g++='g++ -std=c++11'
 
 # cppline will alias to 'python cpplint.py' to call the script.
-alias cpplint='python `scriptdir`/cpplint.py'
+alias cpplint='python `scriptdir`/NonExecutable/cpplint.py'
