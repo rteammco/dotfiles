@@ -24,9 +24,10 @@ function cd()
 function bk()
 {
   SCRIPTDIR=`scriptdir`
-  if [ -e "$SCRIPTDIR/bkdir" ];
+  BK_FILE=Data/bkdir
+  if [ -e "$SCRIPTDIR/$BK_FILE" ];
   then
-    cd `cat $SCRIPTDIR/bkdir`;
+    cd `cat $SCRIPTDIR/$BK_FILE`;
     pwd;
   fi
 }
