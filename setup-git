@@ -11,3 +11,4 @@ git config --global color.ui auto
 git config --global core.editor "$editor"
 git config --global user.name "$name"
 git config --global user.email "$email"
+git config --global core.excludesfile `pwd`/gitignore_global
