@@ -16,6 +16,9 @@ export PS1='\u@\[\e[1m\]\h\[\e[0m\]: \W $ '
 export PATH=$HOME/Scripts:$PATH
 export PATH=$HOME/bin:$PATH
 
+# Also add specific UT Austin scripts.
+export PATH=$HOME/Scripts/UTA:$PATH
+
 # if a local bashrc is also defined (for this machine only), source
 # that to add the required local setups.
 local_bashrc_file=$dotfiles_dir/.bashrc_local
