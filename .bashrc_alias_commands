@@ -12,4 +12,4 @@ alias g++='g++ -std=c++11'
 
 # cpplint will alias to 'python cpplint.py' to call the script. Also filter out
 # warnings about providing a copyright message.
-alias cpplint='python `scriptdir`/NonExecutable/cpplint.py --filter=-legal/copyright'
+alias cpplint='python `scriptdir`/NonExecutable/cpplint.py --filter=-legal/copyright,-readability/todo'
