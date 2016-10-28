@@ -4,19 +4,20 @@ bash_profile=$HOME/.bash_profile
 bashrc=$HOME/.bashrc
 vimrc=$HOME/.vimrc
 
-echo "WARNING: This will delete and replace the following files:"
+echo "WARNING: The following files will be updated (appended to):"
 echo "  $bash_profile"
 echo "  $bashrc"
+echo "WARNING: The following files will be deleted and replaced:"
 echo "  $vimrc"
 read -p "Continue? [Y/n] " ans
 if [[ $ans == [Yy]* ]];
 then
-  # Remove the old dotfiles:
-  rm -f $bash_profile
-  rm -f $bashrc
+  # Append exports to .bash_profle and .bashrc:
+  bash_profile_new=`pwd`/.bash_profile
+  bashrc_new=`pwd`/.bashrc
+  echo "source $bash_profile_new" >> $bash_profile
+  echo "source $bashrc_new" >> $bashrc
+  # Replace and/or create .vimrc:
   rm -f $vimrc
-  # Link these dotfiles in their place:
-  ln -s `pwd`/.bash_profile $bash_profile;
-  ln -s `pwd`/.bashrc $bashrc;
   ln -s `pwd`/.vimrc $vimrc;
 fi
