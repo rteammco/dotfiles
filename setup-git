@@ -2,13 +2,22 @@
 
 # Configures git with the correct global settings...
 # Useful on fresh installations of a new OS.
+# Provide your name and email address that will be used IN QUOTES.
+
+if [[ -z $1 ]] || [[ -z $2 ]]; then
+  echo "Please specify a username and email address (in quotes)."
+  echo 'e.g. $ setup-git "John Smith" "john.smith@gmail.com"'
+  exit
+fi
 
 editor="vim"
-name="Richard Teammco"
-email="teammco@cs.utexas.edu"
+name="$1"
+email="$2"
 
 git config --global color.ui auto
 git config --global core.editor "$editor"
 git config --global user.name "$name"
 git config --global user.email "$email"
 git config --global core.excludesfile `pwd`/gitignore_global
+
+echo "Configured git for $name ($email)"
