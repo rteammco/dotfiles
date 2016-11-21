@@ -40,7 +40,6 @@ if [[ $OS == 'Darwin' ]]; then
 # Linux:
 else
     alias ls='ls --color=auto';
-    export LPDEST="lw302"
 fi
 
 
