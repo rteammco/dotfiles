@@ -1,0 +1,4 @@
+alias lls="clear; pwd; ls"
+alias zrl="source ~/.zshrc"
+
+alias python='python3'

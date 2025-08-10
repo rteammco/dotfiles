@@ -1,0 +1,6 @@
+help-vim() {
+  echo "vsplit:   :vs"
+  echo "hsplit:   ctrl + w, s"
+  echo "resize:   ctrl + w, {+,-,=}"
+  echo "terminal: :term"
+}

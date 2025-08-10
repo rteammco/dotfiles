@@ -1,0 +1,12 @@
+alias g="git"                                       # shorthand for git
+alias gs="git status"                               # status
+alias gl="git branch -l"                            # list local branches
+alias gls="git branch -l; git status"               # list local branches and status
+alias lgls="clear; pwd; git branch -l; git status"  # clear screen, then list branches and status
+alias gd="git diff"                                 # diff of unstaged (untracked) changes
+alias gdc="git diff --cached"                       # diff of staged changes
+alias gbn="git rev-parse --abbrev-ref HEAD"         # current branch name (used in other functions)
+alias gco="git checkout"                            # checkout
+alias gpu="git push"                                # push to remote
+alias gpl="git pull"                                # pull from remote
+alias gwipe="git clean -d -f"                       # delete all untracked files and directories

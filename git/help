@@ -1,0 +1,48 @@
+help-git() {
+  # Aliases:
+  echo "g                               := `print-alias-src(g)`"
+  echo "gs                              := `print-alias-src(gs)`"
+  echo "gl                              := `print-alias-src(gl)`"
+  echo "gls                             := `print-alias-src(gls)`"
+  echo "lgls                            := `print-alias-src(lgls)`"
+  echo "gd                              := `print-alias-src(gd)`"
+  echo "gdc                             := `print-alias-src(gdc)`"
+  echo "gbn                             := `print-alias-src(gbn)`"
+  echo "gco                             := `print-alias-src(gco)`"
+  echo "gpu                             := `print-alias-src(gpu)`"
+  echo "gpl                             := `print-alias-src(gpl)`"
+  echo "gwipe                           := `print-alias-src(gwipe)`"
+
+  # Helper functions:
+  echo
+  echo "git-fetch-remote <branch_name>  := fetch and check out branch from origin"
+  echo "grn <new_branch_name>           := rename current branch"
+  echo "gpu1                            := push the current branch the first time - push and set upstream"
+  echo "gunc                            := un-commit the last commit but keep all changes"
+
+  # Additional help:
+  echo
+  echo "Force commit with no checks/hooks:"
+  echo "    > git commit -n"
+  echo
+  echo "Revert unstaged file(s):"
+  echo "    > git checkout -- path/to/file"
+  echo "    > git checkout -- ."
+  echo
+  echo "Revert a file from origin/master:"
+  echo "    > git fetch"
+  echo "    > git checkout origin/master -- path/to/file"
+  echo
+  echo "Reset untracked files:"
+  echo "    > git clean -f"
+  echo
+  echo "Stash:"
+  echo "    > git stash"
+  echo "    > git stash list"
+  echo "    > git stash pop"
+  echo
+  echo "Undo branch delete (after git branch -d/D <branch-name>):"
+  echo "    > git branch -d <branch-name>"
+  echo "    < Deleted branch <branch-name> (was <sha1>)"
+  echo "    > git branch <branch-name> <sha1>"
+}

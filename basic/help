@@ -1,0 +1,8 @@
+help-node() {
+  echo "npx create-react-app my-app --template typescript"
+}
+
+help-sh() {
+  echo "Find a directory by name:"
+  echo "  > find . -type d | grep DIRNAME"
+}

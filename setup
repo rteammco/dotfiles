@@ -1,23 +1,69 @@
 #!/bin/bash
 
-bash_profile=$HOME/.bash_profile
-bashrc=$HOME/.bashrc
+shellrc=$HOME/.zshrc
 vimrc=$HOME/.vimrc
 
-echo "WARNING: The following files will be updated (appended to):"
-echo "  $bash_profile"
-echo "  $bashrc"
-echo "WARNING: The following files will be deleted and replaced:"
-echo "  $vimrc"
-read -p "Continue? [Y/n] " ans
-if [[ $ans == [Yy]* ]];
-then
-  # Append exports to .bash_profle and .bashrc:
-  bash_profile_new=`pwd`/.bash_profile
-  bashrc_new=`pwd`/.bashrc
-  echo "source $bash_profile_new" >> $bash_profile
-  echo "source $bashrc_new" >> $bashrc
-  # Replace and/or create .vimrc:
-  rm -f $vimrc
-  ln -s `pwd`/.vimrc $vimrc;
-fi
+setup-shellrc() {
+  echo -e "\033[1;34mModify $shellrc?\033[0m 🛠️"
+  read -p "Append 'source $(pwd)/shellrc' to $shellrc? [Y/n] " ans
+  if [[ $ans == [Yy]* ]];
+  then
+    echo -e "\nsource $(pwd)/shellrc" >> $shellrc
+    echo -e "✅ \033[32m$shellrc updated!\033[0m"
+  else
+    echo "❌ $shellrc was not modified."
+  fi
+}
+
+setup-vimrc() {
+  echo -e "\033[1;34mReplace $vimrc?\033[0m ⌨️"
+  read -p "Replace $vimrc with $(pwd)/vim/vimrc? [Y/n] " ans
+  if [[ $ans == [Yy]* ]];
+  then
+    cat $(pwd)/vim/vimrc > "$vimrc"
+    echo -e "✅ \033[32m$vimrc updated!\033[0m"
+  else
+    echo "❌ $vimrc was not modified."
+  fi
+}
+
+setup-git() {
+  echo -e "\033[1;34mConfigure git?\033[0m 🔀"
+  read -p "Configure git global settings on your system? [Y/n] " ans
+  if [[ $ans == [Yy]* ]];
+  then
+    read -p "Please enter your config name: " name
+    if [[ -z $name ]]; then
+      echo "❌ Name cannot be empty. Skipping git configuration setup."
+      return
+    fi
+    read -p "Please enter your config email: " email
+    if [[ -z $email ]]; then
+      echo "❌ Email cannot be empty. Skipping git configuration setup."
+      return
+    fi
+    echo "Configuring git for '$name' with email '$email'..."
+    git config --global color.ui auto
+    git config --global core.editor "vim"
+    git config --global user.name "$name"
+    git config --global user.email "$email"
+    git config --global core.excludesfile $(pwd)/git/gitignore_global
+    echo -e "✅ \033[32mGlobal git settings configured!\033[0m"
+  else
+    echo "❌ Skipped git configuration."
+  fi
+}
+
+echo "Let's set up your environment!"
+echo
+
+setup-shellrc
+echo
+
+setup-vimrc
+echo
+
+setup-git
+echo
+
+echo "🎉 Setup steps completed!"

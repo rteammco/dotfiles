@@ -1,0 +1,15 @@
+PS1="%n [%1~] %# "
+echo Architecture: `arch`
+
+export CLICOLOR=1
+export LSCOLORS=GxFxCxDxBxegedabagaced
+
+export PATH=/opt/homebrew/bin:$PATH
+
+source ./basic/aliases
+source ./basic/functions
+source ./basic/help
+source ./git/aliases
+source ./git/functions
+source ./git/help
+source ./vim/help
