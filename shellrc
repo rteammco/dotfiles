@@ -6,10 +6,12 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 
 export PATH=/opt/homebrew/bin:$PATH
 
-source ./basic/aliases
-source ./basic/functions
-source ./basic/help
-source ./git/aliases
-source ./git/functions
-source ./git/help
-source ./vim/help
+SCRIPT_DIR="${0:A:h}"
+
+source $SCRIPT_DIR/basic/aliases
+source $SCRIPT_DIR/basic/functions
+source $SCRIPT_DIR/basic/help
+source $SCRIPT_DIR/git/aliases
+source $SCRIPT_DIR/git/functions
+source $SCRIPT_DIR/git/help
+source $SCRIPT_DIR/vim/help
