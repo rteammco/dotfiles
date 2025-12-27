@@ -1,9 +1,8 @@
 print-alias-src() {
-  which print-alias-src
-  alias $1 | sed "s/^.*='//;s/'$//"
+  echo $1 := `alias $1 | sed "s/^.*='//;s/'$//"`
 }
 
 cors-chrome() {
-  which cors-chrome
+  echo "Launching Chrome with CORS disabled..."
   open -na Google\ Chrome --args --user-data-dir=/tmp/temporary-chrome-profile-dir --disable-web-security --disable-site-isolation-trials
 }

@@ -1,17 +1,17 @@
 help-git() {
   # Aliases:
-  echo "g                               := `print-alias-src(g)`"
-  echo "gs                              := `print-alias-src(gs)`"
-  echo "gl                              := `print-alias-src(gl)`"
-  echo "gls                             := `print-alias-src(gls)`"
-  echo "lgls                            := `print-alias-src(lgls)`"
-  echo "gd                              := `print-alias-src(gd)`"
-  echo "gdc                             := `print-alias-src(gdc)`"
-  echo "gbn                             := `print-alias-src(gbn)`"
-  echo "gco                             := `print-alias-src(gco)`"
-  echo "gpu                             := `print-alias-src(gpu)`"
-  echo "gpl                             := `print-alias-src(gpl)`"
-  echo "gwipe                           := `print-alias-src(gwipe)`"
+  echo "`print-alias-src g`"
+  echo "`print-alias-src gs`"
+  echo "`print-alias-src gl`"
+  echo "`print-alias-src gls`"
+  echo "`print-alias-src lgls`"
+  echo "`print-alias-src gd`"
+  echo "`print-alias-src gdc`"
+  echo "`print-alias-src gbn`"
+  echo "`print-alias-src gco`"
+  echo "`print-alias-src gpu`"
+  echo "`print-alias-src gpl`"
+  echo "`print-alias-src gwipe`"
 
   # Helper functions:
   echo

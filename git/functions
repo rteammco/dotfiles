@@ -1,12 +1,11 @@
 # Check out a remote branch, e.g. `git-fetch-remote feat1`
 git-fetch-remote() {
-  which git-fetch-remote
   if [ -z "$1" ]
   then
     echo "Remote branch name required."
     return
   fi
-  echo "Fetching branch '$1'"
+  echo "Fetching remote branch '$1'..."
   git fetch
   git checkout -b $1 origin/$1
   git pull origin $1
@@ -14,19 +13,19 @@ git-fetch-remote() {
 
 # Rename current branch, e.g. `grn new-branch-name`
 grn() {
-  which grn
+  echo "Renaming current git branch to '$1'..."
   git branch -m `gbn` $1
 }
 
 # Push current branch the first time - push and set upstream
 gpu1() {
-  which gpu1
+  echo "Pushing current git branch to remote..."
   git push -u origin `gbn`
 }
 
 # Un-commit the last commit but keep all changes
 gunc() {
-  which gunc
+  echo "Un-committing most recent git commit..."
   git log -1 --pretty=%B
   git reset HEAD^
 }
