@@ -29,9 +29,9 @@ help-git() {
   echo "    > git checkout -- path/to/file"
   echo "    > git checkout -- ."
   echo
-  echo "Revert a file from origin/master:"
+  echo "Revert a file from origin/main:"
   echo "    > git fetch"
-  echo "    > git checkout origin/master -- path/to/file"
+  echo "    > git checkout origin/main -- path/to/file"
   echo
   echo "Reset untracked files:"
   echo "    > git clean -f"
