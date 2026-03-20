@@ -1,0 +1,23 @@
+cmd() {
+  if [ $# -eq 0 ]; then
+    echo "Usage: cmd <natural language prompt>"
+    return 1
+  fi
+
+  local prompt="$*"
+
+  # System instruction to force clean output
+  local system_prompt="You are a Unix shell expert. 
+Convert the user's request into a single bash command.
+Rules:
+- Output ONLY the command on a single line
+- No explanations, no backticks, no comments
+- Use standard Unix tools (bash, coreutils, find, grep, etc.)
+- Assume macOS or Linux environment"
+
+  ollama run qwen2.5-coder <<EOF | sed 's/^ *//;s/ *$//' | head -n 1
+$system_prompt
+
+User request: $prompt
+EOF
+}
