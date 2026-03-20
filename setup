@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 shellrc=$HOME/.zshrc
 vimrc=$HOME/.vimrc
@@ -32,12 +32,12 @@ setup-git() {
   read -p "Configure git global settings on your system? [Y/n] " ans
   if [[ $ans == [Yy]* ]];
   then
-    read -p "Please enter your config name: " name
+    read -p "Please enter your git config username: " name
     if [[ -z $name ]]; then
       echo "❌ Name cannot be empty. Skipping git configuration setup."
       return
     fi
-    read -p "Please enter your config email: " email
+    read -p "Please enter your git config email: " email
     if [[ -z $email ]]; then
       echo "❌ Email cannot be empty. Skipping git configuration setup."
       return
