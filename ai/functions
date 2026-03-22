@@ -1,23 +1,98 @@
+CMD_MODEL="qwen2.5-coder"
+USAGE_PROMPT_PLACEHOLDER="<natural language prompt>"
+
+# cmd: Convert English → single shell command via LLM
+# Usage: cmd <prompt>
+# Notes:
+# - Prints command only (no explanation)
+# - Command is not executed
 cmd() {
   if [ $# -eq 0 ]; then
-    echo "Usage: cmd <natural language prompt>"
+    echo "Usage: cmd $USAGE_PROMPT_PLACEHOLDER"
     return 1
   fi
 
-  local prompt="$*"
-
-  # System instruction to force clean output
-  local system_prompt="You are a Unix shell expert. 
+  local llm_prompt="You are a Unix shell expert. 
 Convert the user's request into a single bash command.
 Rules:
-- Output ONLY the command on a single line
-- No explanations, no backticks, no comments
-- Use standard Unix tools (bash, coreutils, find, grep, etc.)
+- Use standard Unix tools (bash, coreutils, find, grep, git, etc.)
+- Output ONLY the command by itself (no explanation, no backticks, no comments)
+- Output may not contain any line breaks
 - Assume macOS or Linux environment"
 
-  ollama run qwen2.5-coder <<EOF | sed 's/^ *//;s/ *$//' | head -n 1
-$system_prompt
+  local input_prompt="$*"
+  ollama run "$CMD_MODEL" <<EOF | sed 's/^ *//;s/ *$//' | head -n 1
+$llm_prompt
 
-User request: $prompt
+User request: $input_prompt
 EOF
+}
+
+# cmdr: Generate command and optionally run it
+# Usage: cmdr <prompt>
+# Notes:
+# - Shows command, asks for confirmation
+# - Runs with eval if confirmed
+cmdr() {
+  if [ $# -eq 0 ]; then
+    echo "Usage: cmdr $USAGE_PROMPT_PLACEHOLDER"
+    return 1
+  fi
+
+  local command
+  command="$(cmd "$@")"
+
+  echo "→ $command"
+  printf "Run command? [y/N] "
+  read confirm
+
+  if [[ "$confirm" =~ ^[Yy]$ ]]; then
+    eval "$command"
+  fi
+}
+
+# cmd-explain: Generate command, then explain it
+# Usage: cmd-explain <prompt>
+# Notes:
+# - Generates and outputs the command
+# - Outputs short explanation of it
+cmd-explain() {
+  if [ $# -eq 0 ]; then
+    echo "Usage: cmd-explain $USAGE_PROMPT_PLACEHOLDER"
+    return 1
+  fi
+
+  local command
+  command="$(cmd "$@")"
+
+  # 3) Ask the LLM to explain the command clearly and briefly
+  local llm_prompt
+  llm_prompt="You explain shell commands.
+Rules:
+- Explain the given command briefly and clearly
+- Be concise but informative
+- Prefer 2-4 short bullet points
+- Mention the purpose of the command
+- Explain important flags/options
+- Do not be verbose
+- Do not wrap output in markdown code fences
+- Do not repeat the full command unless necessary"
+
+  local explanation
+  explanation="$(
+    ollama run "$CMD_MODEL" <<EOF
+$llm_prompt
+
+User request - explain this shell command:
+$command
+EOF
+  )"
+
+  if [ -z "$explanation" ]; then
+    echo "Failed to generate explanation" >&2
+    return 1
+  fi
+
+  echo "→ $command"
+  printf '\n%s\n' "$explanation"
 }
