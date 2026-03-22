@@ -1,5 +1,5 @@
 print-alias-src() {
-  echo $1 := `alias $1 | sed "s/^.*='//;s/'$//"`
+  echo $1 := $(alias $1 | sed "s/^.*='//;s/'$//")
 }
 
 cors-chrome() {

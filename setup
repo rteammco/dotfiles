@@ -6,9 +6,8 @@ vimrc=$HOME/.vimrc
 setup-shellrc() {
   echo -e "\033[1;34mModify $shellrc?\033[0m 🛠️"
   read -p "Append 'source $(pwd)/shellrc' to $shellrc? [Y/n] " ans
-  if [[ $ans == [Yy]* ]];
-  then
-    echo -e "\nsource $(pwd)/shellrc" >> $shellrc
+  if [[ $ans == [Yy]* ]]; then
+    echo -e "\nsource $(pwd)/shellrc" >>$shellrc
     echo -e "✅ \033[32m$shellrc updated!\033[0m"
   else
     echo "❌ $shellrc was not modified."
@@ -18,9 +17,8 @@ setup-shellrc() {
 setup-vimrc() {
   echo -e "\033[1;34mReplace $vimrc?\033[0m ⌨️"
   read -p "Replace $vimrc with $(pwd)/vim/vimrc? [Y/n] " ans
-  if [[ $ans == [Yy]* ]];
-  then
-    cat $(pwd)/vim/vimrc > "$vimrc"
+  if [[ $ans == [Yy]* ]]; then
+    cat $(pwd)/vim/vimrc >"$vimrc"
     echo -e "✅ \033[32m$vimrc updated!\033[0m"
   else
     echo "❌ $vimrc was not modified."
@@ -30,8 +28,7 @@ setup-vimrc() {
 setup-git() {
   echo -e "\033[1;34mConfigure git?\033[0m 🔀"
   read -p "Configure git global settings on your system? [Y/n] " ans
-  if [[ $ans == [Yy]* ]];
-  then
+  if [[ $ans == [Yy]* ]]; then
     read -p "Please enter your git config username: " name
     if [[ -z $name ]]; then
       echo "❌ Name cannot be empty. Skipping git configuration setup."

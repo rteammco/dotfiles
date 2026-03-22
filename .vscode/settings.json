@@ -1,0 +1,12 @@
+{
+  "files.associations": {
+    "*": "shellscript",
+    "*.md": "markdown",
+    "*.json": "json"
+  },
+
+  "[shellscript]": {
+    "editor.defaultFormatter": "mads-hartmann.bash-ide-vscode",
+    "editor.formatOnSave": true
+  }
+}
